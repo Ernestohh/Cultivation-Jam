@@ -2,6 +2,7 @@
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace TutorialInfo.Scripts.Editor
 {
@@ -9,11 +10,11 @@ namespace TutorialInfo.Scripts.Editor
     [InitializeOnLoad]
     public class ReadmeEditor : UnityEditor.Editor
     {
-        static string s_ShowedReadmeSessionStateName = "ReadmeEditor.showedReadme";
+        static string _sShowedReadmeSessionStateName = "ReadmeEditor.showedReadme";
     
-        static string s_ReadmeSourceDirectory = "Assets/TutorialInfo";
+        static string _sReadmeSourceDirectory = "Assets/TutorialInfo";
 
-        const float k_Space = 16f;
+        const float KSpace = 16f;
 
         static ReadmeEditor()
         {
@@ -24,18 +25,18 @@ namespace TutorialInfo.Scripts.Editor
         {
             if (EditorUtility.DisplayDialog("Remove Readme Assets",
             
-                    $"All contents under {s_ReadmeSourceDirectory} will be removed, are you sure you want to proceed?",
+                    $"All contents under {_sReadmeSourceDirectory} will be removed, are you sure you want to proceed?",
                     "Proceed",
                     "Cancel"))
             {
-                if (Directory.Exists(s_ReadmeSourceDirectory))
+                if (Directory.Exists(_sReadmeSourceDirectory))
                 {
-                    FileUtil.DeleteFileOrDirectory(s_ReadmeSourceDirectory);
-                    FileUtil.DeleteFileOrDirectory(s_ReadmeSourceDirectory + ".meta");
+                    FileUtil.DeleteFileOrDirectory(_sReadmeSourceDirectory);
+                    FileUtil.DeleteFileOrDirectory(_sReadmeSourceDirectory + ".meta");
                 }
                 else
                 {
-                    Debug.Log($"Could not find the Readme folder at {s_ReadmeSourceDirectory}");
+                    Debug.Log($"Could not find the Readme folder at {_sReadmeSourceDirectory}");
                 }
 
                 var readmeAsset = SelectReadme();
@@ -52,10 +53,10 @@ namespace TutorialInfo.Scripts.Editor
 
         static void SelectReadmeAutomatically()
         {
-            if (!SessionState.GetBool(s_ShowedReadmeSessionStateName, false))
+            if (!SessionState.GetBool(_sShowedReadmeSessionStateName, false))
             {
                 var readme = SelectReadme();
-                SessionState.SetBool(s_ShowedReadmeSessionStateName, true);
+                SessionState.SetBool(_sShowedReadmeSessionStateName, true);
 
                 if (readme && !readme.loadedLayout)
                 {
@@ -102,10 +103,10 @@ namespace TutorialInfo.Scripts.Editor
             {
                 if (readme.icon != null)
                 {
-                    GUILayout.Space(k_Space);
+                    GUILayout.Space(KSpace);
                     GUILayout.Label(readme.icon, GUILayout.Width(iconWidth), GUILayout.Height(iconWidth));
                 }
-                GUILayout.Space(k_Space);
+                GUILayout.Space(KSpace);
                 GUILayout.BeginVertical();
                 {
 
@@ -144,7 +145,7 @@ namespace TutorialInfo.Scripts.Editor
                     }
                 }
 
-                GUILayout.Space(k_Space);
+                GUILayout.Space(KSpace);
             }
 
             if (GUILayout.Button("Remove Readme Assets", ButtonStyle))
@@ -153,75 +154,75 @@ namespace TutorialInfo.Scripts.Editor
             }
         }
 
-        bool m_Initialized;
+        bool _mInitialized;
 
         GUIStyle LinkStyle
         {
-            get { return m_LinkStyle; }
+            get { return mLinkStyle; }
         }
 
-        [SerializeField]
-        GUIStyle m_LinkStyle;
+        [FormerlySerializedAs("m_LinkStyle")] [SerializeField]
+        GUIStyle mLinkStyle;
 
         GUIStyle TitleStyle
         {
-            get { return m_TitleStyle; }
+            get { return mTitleStyle; }
         }
 
-        [SerializeField]
-        GUIStyle m_TitleStyle;
+        [FormerlySerializedAs("m_TitleStyle")] [SerializeField]
+        GUIStyle mTitleStyle;
 
         GUIStyle HeadingStyle
         {
-            get { return m_HeadingStyle; }
+            get { return mHeadingStyle; }
         }
 
-        [SerializeField]
-        GUIStyle m_HeadingStyle;
+        [FormerlySerializedAs("m_HeadingStyle")] [SerializeField]
+        GUIStyle mHeadingStyle;
 
         GUIStyle BodyStyle
         {
-            get { return m_BodyStyle; }
+            get { return mBodyStyle; }
         }
 
-        [SerializeField]
-        GUIStyle m_BodyStyle;
+        [FormerlySerializedAs("m_BodyStyle")] [SerializeField]
+        GUIStyle mBodyStyle;
 
         GUIStyle ButtonStyle
         {
-            get { return m_ButtonStyle; }
+            get { return mButtonStyle; }
         }
 
-        [SerializeField]
-        GUIStyle m_ButtonStyle;
+        [FormerlySerializedAs("m_ButtonStyle")] [SerializeField]
+        GUIStyle mButtonStyle;
 
         void Init()
         {
-            if (m_Initialized)
+            if (_mInitialized)
                 return;
-            m_BodyStyle = new GUIStyle(EditorStyles.label);
-            m_BodyStyle.wordWrap = true;
-            m_BodyStyle.fontSize = 14;
-            m_BodyStyle.richText = true;
+            mBodyStyle = new GUIStyle(EditorStyles.label);
+            mBodyStyle.wordWrap = true;
+            mBodyStyle.fontSize = 14;
+            mBodyStyle.richText = true;
 
-            m_TitleStyle = new GUIStyle(m_BodyStyle);
-            m_TitleStyle.fontSize = 26;
+            mTitleStyle = new GUIStyle(mBodyStyle);
+            mTitleStyle.fontSize = 26;
 
-            m_HeadingStyle = new GUIStyle(m_BodyStyle);
-            m_HeadingStyle.fontStyle = FontStyle.Bold;
-            m_HeadingStyle.fontSize = 18;
+            mHeadingStyle = new GUIStyle(mBodyStyle);
+            mHeadingStyle.fontStyle = FontStyle.Bold;
+            mHeadingStyle.fontSize = 18;
 
-            m_LinkStyle = new GUIStyle(m_BodyStyle);
-            m_LinkStyle.wordWrap = false;
+            mLinkStyle = new GUIStyle(mBodyStyle);
+            mLinkStyle.wordWrap = false;
 
             // Match selection color which works nicely for both light and dark skins
-            m_LinkStyle.normal.textColor = new Color(0x00 / 255f, 0x78 / 255f, 0xDA / 255f, 1f);
-            m_LinkStyle.stretchWidth = false;
+            mLinkStyle.normal.textColor = new Color(0x00 / 255f, 0x78 / 255f, 0xDA / 255f, 1f);
+            mLinkStyle.stretchWidth = false;
 
-            m_ButtonStyle = new GUIStyle(EditorStyles.miniButton);
-            m_ButtonStyle.fontStyle = FontStyle.Bold;
+            mButtonStyle = new GUIStyle(EditorStyles.miniButton);
+            mButtonStyle.fontStyle = FontStyle.Bold;
 
-            m_Initialized = true;
+            _mInitialized = true;
         }
 
         bool LinkLabel(GUIContent label, params GUILayoutOption[] options)
