@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace _Scripts.Plants
 {
-    [RequireComponent(typeof(PlantController))]
+    [RequireComponent(typeof(PlantController),typeof(Animator))]
     public class Plant : PlantController
     {
         private void Update()
