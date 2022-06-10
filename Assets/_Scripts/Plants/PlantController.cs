@@ -54,6 +54,7 @@ namespace _Scripts.Plants
             gameObject.GetComponent<MeshFilter>().mesh = _plantMesh;
             gameObject.GetComponent<MeshRenderer>().material = _plantMaterial;
             gameObject.GetComponent<MeshCollider>().convex = true;
+            gameObject.GetComponent<MeshCollider>().sharedMesh = _plantMesh;
         }
 
         private void SetPlantData()
