@@ -10,11 +10,21 @@ namespace _Scripts.Plants
         {
             if(Input.GetAxisRaw("Horizontal") > 0 && !IsGrowing)
                 OnGrowingHealthy?.Invoke();
+            if(Input.GetAxisRaw("Vertical") > 0 && IsGrowing)
+                OnGrowingSick?.Invoke();
         }
 
         public void Growing()
         {
+            if (IsSick || IsHarvestable) return;
             StartCoroutine(StartToGrow());
+        }
+        public void BecomeSick()
+        {
+            if (IsSick) return;
+            StopCoroutine(StartToGrow());
+            IsGrowing = false;
+            IsSick = true;
         }
     }
 }

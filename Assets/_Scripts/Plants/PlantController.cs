@@ -10,11 +10,12 @@ namespace _Scripts.Plants
     [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer), typeof(MeshCollider))]
     public class PlantController : MonoBehaviour, IGrowable
     {
-        public bool IsGrowing { get; set; }
-        public bool IsSick { get; set; }
-        public bool IsHarvestable { get; set; }
+        [field: SerializeField] public bool IsGrowing { get; set; }
+        [field: SerializeField] public bool IsSick { get; set; }
+        [field: SerializeField] public bool IsHarvestable { get; set; }
         [field: SerializeField] public PlantScriptableObject PlantScriptableObject { get; set; }
         [field: SerializeField] public UnityEvent OnGrowingHealthy { get; set; }
+        [field: SerializeField] public UnityEvent OnGetCured { get; set; }
         [field: SerializeField] public UnityEvent OnGrowingSick { get; set; }
         [field: SerializeField] public UnityEvent OnFullyGrownHealthy { get; set; }
         [field: SerializeField] public UnityEvent OnFullyGrownSick { get; set; }
@@ -38,9 +39,9 @@ namespace _Scripts.Plants
                 transform.localScale = Vector3.Lerp(startScale, harvestableScale, timer / _growTime);
                 timer += Time.deltaTime;
                 yield return null;
-            } while (timer < _growTime);
-
-            IsHarvestable = true;
+            } while (timer < _growTime && IsGrowing && !IsHarvestable);
+            if((Vector2)transform.localScale == harvestableScale)
+                IsHarvestable = true;
         }
         
         private void Start()
