@@ -1,0 +1,29 @@
+<changelist name="unnamed1" date="1655057227004" recycled="false">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/.idea.Cultivation-Jam/.idea/shelf/unnamed1/shelved.patch" />
+  <option name="DESCRIPTION" value="" />
+  <binary>
+    <option name="BEFORE_PATH" value="Assets/TutorialInfo/Icons/URP.png" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Assets/TutorialInfo/Layout.wlt" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Logs/AssetImportWorker0.log" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Logs/AssetImportWorker1.log" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Logs/shadercompiler-AssetImportWorker0.log" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+</changelist>
