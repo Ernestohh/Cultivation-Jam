@@ -1,56 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="44e8296c-e705-4791-812d-c639bfe19c9b" name="Changes" comment="" />
+    <list default="true" id="a906d9bd-5af2-4e75-bb78-033f56161405" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="feature/Plants" />
-      </map>
-    </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="develop" />
   </component>
-  <component name="GithubProjectSettings">
-    <option name="branchProtectionPatterns">
-      <list>
-        <option value="develop" />
-        <option value="master" />
-      </list>
-    </option>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/_Scripts/Camera/CameraManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_Scripts/Interaction/InteractionMessageUI.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_Scripts/Shaders/Outline.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_Scripts/Spring.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="2640aa78-a797-4820-950a-3887b9741eda" />
-        <option name="url" value="https://github.com/Ernestohh/Cultivation-Jam.git" />
-      </UrlAndAccount>
-    </option>
-  </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProjectId" id="2AOmULxmF1Z4nfNsb6U4e0glGRT" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Discover.Launch.Via.Unity&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.39854193&quot;,
-    &quot;rider.run.widget.enabled.cache&quot;: &quot;false&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  }
-}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="$USER_HOME$/Unity/Hub/Editor/2021.3.4f1/Editor/Unity" />
@@ -80,135 +45,11 @@
       </option>
       <method v="2" />
     </configuration>
-    <list>
-      <item itemvalue="Attach to Unity Editor.Attach to Unity Editor" />
-      <item itemvalue="Attach to Unity Editor.Attach to Unity Editor &amp; Play" />
-      <item itemvalue="Standalone Player.UnitTests (batch mode)" />
-    </list>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="44e8296c-e705-4791-812d-c639bfe19c9b" name="Changes" comment="" />
-      <created>1654889022275</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1654889022275</updated>
-      <workItem from="1654889028354" duration="7084000" />
-      <workItem from="1654928885544" duration="3327000" />
-      <workItem from="1655056777967" duration="397000" />
-      <workItem from="1655057183682" duration="114000" />
-      <workItem from="1655057307064" duration="88000" />
-    </task>
-    <task id="LOCAL-00001" summary="folder structure">
-      <created>1654889271182</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1654889271182</updated>
-    </task>
-    <task id="LOCAL-00002" summary="folder">
-      <created>1654889445604</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1654889445604</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Base for System:Plants">
-      <created>1654893207422</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1654893207422</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Plant.cs created for individual plants">
-      <created>1654894941692</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1654894941692</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Added requirement for Animator controller">
-      <created>1654895203610</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1654895203610</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Fixed MeshCollider data on PlantController.cs">
-      <created>1654895507310</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1654895507310</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Added more Events and made some logic to become sick">
-      <created>1654931805797</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1654931805797</updated>
-    </task>
-    <task id="LOCAL-00008">
-      <created>1655056915420</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1655056915420</updated>
-    </task>
-    <task id="LOCAL-00009" summary="deketed">
-      <created>1655057043952</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1655057043952</updated>
-    </task>
-    <task id="LOCAL-00010" summary="commit">
-      <created>1655057057982</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1655057057982</updated>
-    </task>
-    <task id="LOCAL-00011">
-      <created>1655057227110</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1655057227110</updated>
-    </task>
-    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="false" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
-  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="folder structure" />
-    <MESSAGE value="folder" />
-    <MESSAGE value="Base for plants system" />
-    <MESSAGE value="Base for System:Plants" />
-    <MESSAGE value="Plant.cs created for individual plants" />
-    <MESSAGE value="Added requirement for Animator controller" />
-    <MESSAGE value="Fixed MeshCollider data on PlantController.cs" />
-    <MESSAGE value="Added more Events and made some logic to become sick" />
-    <MESSAGE value="deketed" />
-    <MESSAGE value="commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
-  </component>
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
 </project>
