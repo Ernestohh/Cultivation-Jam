@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Interactable : MonoBehaviour
 {
+    public UnityEvent onInteract;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +16,10 @@ public class Interactable : MonoBehaviour
     void Update()
     {
         
+    }
+    public void ChangeScale()
+    {
+        gameObject.GetComponent<Transform>().localScale += new Vector3(0, 0.1f, 0);
+      
     }
 }
