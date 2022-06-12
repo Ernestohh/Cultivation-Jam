@@ -176,6 +176,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  <OnGetCured>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
   <OnGrowingSick>k__BackingField:
     m_PersistentCalls:
       m_Calls:
@@ -195,9 +198,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   <OnFullyGrownSick>k__BackingField:
-    m_PersistentCalls:
-      m_Calls: []
-  <OnGetCured>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
 --- !u!64 &60396186
@@ -467,6 +467,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  <OnGetCured>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
   <OnGrowingSick>k__BackingField:
     m_PersistentCalls:
       m_Calls:
@@ -486,9 +489,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   <OnFullyGrownSick>k__BackingField:
-    m_PersistentCalls:
-      m_Calls: []
-  <OnGetCured>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
 --- !u!64 &734480576
@@ -643,6 +643,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  <OnGetCured>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
   <OnGrowingSick>k__BackingField:
     m_PersistentCalls:
       m_Calls:
@@ -662,9 +665,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   <OnFullyGrownSick>k__BackingField:
-    m_PersistentCalls:
-      m_Calls: []
-  <OnGetCured>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
 --- !u!64 &1326867102
