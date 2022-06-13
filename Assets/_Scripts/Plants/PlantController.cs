@@ -13,6 +13,8 @@ namespace _Scripts.Plants
         [field: SerializeField] public bool IsGrowing { get; set; }
         [field: SerializeField] public bool IsSick { get; set; }
         [field: SerializeField] public bool IsHarvestable { get; set; }
+        [field: SerializeField] public int AmountOfPlantStages { get; set; }
+        [field: SerializeField] public int AmountOfDaysToGrow { get; set; }
         [field: SerializeField] public PlantScriptableObject PlantScriptableObject { get; set; }
         [field: SerializeField] public UnityEvent OnGrowingHealthy { get; set; }
         [field: SerializeField] public UnityEvent OnGetCured { get; set; }

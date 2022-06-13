@@ -17,7 +17,9 @@ namespace _Scripts.Plants
         public void Growing()
         {
             if (IsSick || IsHarvestable) return;
-            StartCoroutine(StartToGrow());
+            AmountOfDaysToGrow--;
+            if (AmountOfDaysToGrow <= 0)
+                IsHarvestable = true;
         }
         public void BecomeSick()
         {
