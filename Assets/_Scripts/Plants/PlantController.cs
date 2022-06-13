@@ -21,7 +21,7 @@ namespace _Scripts.Plants
         [field: SerializeField] public UnityEvent OnFullyGrownSick { get; set; }
 
         private string _plantName;
-        private int _growTime;
+        private int _amountOfDaysToGrow, _amountOfPlantStages;
         private float _baseSickness;
         private float maximumScale = 3f;
         private List<string> _positivePlantEffects, _negativePlantEffects;
@@ -36,10 +36,10 @@ namespace _Scripts.Plants
             IsGrowing = true;
             do
             {
-                transform.localScale = Vector3.Lerp(startScale, harvestableScale, timer / _growTime);
+                transform.localScale = Vector3.Lerp(startScale, harvestableScale, timer / _amountOfDaysToGrow);
                 timer += Time.deltaTime;
                 yield return null;
-            } while (timer < _growTime && IsGrowing && !IsHarvestable);
+            } while (timer < _amountOfDaysToGrow && IsGrowing && !IsHarvestable);
             if((Vector2)transform.localScale == harvestableScale)
                 IsHarvestable = true;
         }
@@ -61,7 +61,8 @@ namespace _Scripts.Plants
         private void SetPlantData()
         {
             _plantName = PlantScriptableObject.PlantName;
-            _growTime = PlantScriptableObject.GrowTime;
+            _amountOfDaysToGrow = PlantScriptableObject.AmountOfDaysToGrow;
+            _amountOfPlantStages = PlantScriptableObject.AmountOfPlantStages;
             _baseSickness = PlantScriptableObject.BaseSicknessChance;
             _positivePlantEffects = PlantScriptableObject.PositivePlantEffects;
             _negativePlantEffects = PlantScriptableObject.NegativePlantEffects;

@@ -7,7 +7,8 @@ namespace _Scripts.Plants
     public class PlantScriptableObject : ScriptableObject
     {
         [field: SerializeField] public string PlantName { get; set; }
-        [field: SerializeField] public int GrowTime { get; set; }
+        [field: SerializeField] public int AmountOfDaysToGrow { get; set; }
+        [field: SerializeField] public int AmountOfPlantStages { get; set; }
 
         [field: SerializeField]
         [field: Range(0f, 1)]
