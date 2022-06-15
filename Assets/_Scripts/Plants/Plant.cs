@@ -1,30 +1,54 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 namespace _Scripts.Plants
 {
-    [RequireComponent(typeof(PlantController),typeof(Animator))]
+    [RequireComponent(typeof(PlantController),typeof(Animator), typeof(Outline))]
     public class Plant : PlantController
     {
-        private void Update()
-        {
-            if(Input.GetAxisRaw("Horizontal") > 0 && !IsGrowing)
-                OnGrowingHealthy?.Invoke();
-            if(Input.GetAxisRaw("Vertical") > 0 && IsGrowing)
-                OnGrowingSick?.Invoke();
-        }
-
+        public int _currentGrowthStage = 0;
+        public int _daysPassed = 0;
         public void Growing()
         {
             if (IsSick || IsHarvestable) return;
-            StartCoroutine(StartToGrow());
+            _daysPassed++;
+            IsGrowing = true;
+            if (_daysPassed >= AmountOfDaysToGrow)
+                IsHarvestable = true;
+        }
+
+        public void ChangeOutlineColor()
+        {
+            if(IsSick)
+                GetComponent<Outline>().OutlineColor = Color.red;
+            if(IsGrowing)
+                GetComponent<Outline>().OutlineColor = Color.yellow;
+            if(IsHarvestable)
+                GetComponent<Outline>().OutlineColor = Color.green;
         }
         public void BecomeSick()
         {
             if (IsSick) return;
-            StopCoroutine(StartToGrow());
             IsGrowing = false;
             IsSick = true;
+        }
+
+        public void GoToNextGrowStage()
+        {
+            for (int i = 0; i < AmountOfGrowthStages.Count; i++)
+            {
+                if (AmountOfGrowthStages[i] == _daysPassed)
+                {
+                    _currentGrowthStage = i;
+                }
+            }
+
+            if (_currentGrowthStage == 0) return;
+            gameObject.GetComponent<MeshFilter>().mesh = PlantMeshes[_currentGrowthStage];
+            gameObject.GetComponent<MeshRenderer>().material = PlantMaterial;
+            gameObject.GetComponent<MeshCollider>().convex = true;
+            gameObject.GetComponent<MeshCollider>().sharedMesh = PlantMeshes[_currentGrowthStage];
         }
     }
 }
