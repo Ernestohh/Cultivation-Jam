@@ -14,10 +14,4 @@ public class DayManager : MonoBehaviour
     {
         OnStartOfDay?.Invoke();
     }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.E))
-            OnEndOfDay?.Invoke();
-    }
 }

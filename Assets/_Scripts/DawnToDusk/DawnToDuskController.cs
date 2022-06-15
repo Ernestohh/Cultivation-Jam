@@ -12,13 +12,13 @@ public class DawnToDuskController : MonoBehaviour
     public void ProgressTheDay()
     {
         DayPassed = false;
+        Lerp = 1.5f;
         StartCoroutine(FromDawnToDuskCoroutine());
     }
 
     public void EndTheDay()
     {
         DayPassed = true;
-        Lerp = 1.5f;
         StopCoroutine(FromDawnToDuskCoroutine());
         DayManager.OnStartOfDay?.Invoke();
     }
