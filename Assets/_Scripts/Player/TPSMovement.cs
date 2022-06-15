@@ -9,11 +9,11 @@ public class TPSMovement : MonoBehaviour
     [SerializeField] float speed = 6f;
     [SerializeField] float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
+    private Outline outlineObject = null;
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame

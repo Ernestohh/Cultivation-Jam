@@ -34,6 +34,11 @@ namespace _Scripts.Plants
             IsSick = true;
         }
 
+        public void Harvest()
+        {
+            if (!IsHarvestable) return;
+            Destroy(gameObject);
+        }
         public void GoToNextGrowStage()
         {
             for (int i = 0; i < AmountOfGrowthStages.Count; i++)

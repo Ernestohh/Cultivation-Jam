@@ -57,10 +57,10 @@ public class Outline : MonoBehaviour {
   [SerializeField]
   private bool precomputeOutline;
 
-  [SerializeField, HideInInspector]
+  [SerializeField]
   private List<Mesh> bakeKeys = new List<Mesh>();
 
-  [SerializeField, HideInInspector]
+  [SerializeField]
   private List<ListVector3> bakeValues = new List<ListVector3>();
 
   private Renderer[] renderers;
@@ -73,6 +73,7 @@ public class Outline : MonoBehaviour {
   private void OnMouseOver()
   {
     EnableOutline();
+    LoadSmoothNormals();
   }
 
   private void OnMouseExit()
