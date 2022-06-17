@@ -12,6 +12,7 @@ public class BookManager : MonoBehaviour
     private bool turnToRight;
     private bool turnToLeft;
     private bool bookIsClosing;
+    public bool bookIsClosed = true;
     private List<PageSituations> pagesToBeClosed = new List<PageSituations>();
     private List<PageSituations> closedPages = new List<PageSituations>();
     private void Start()
@@ -20,23 +21,39 @@ public class BookManager : MonoBehaviour
     }
     void Update()
     {
-        GetInputPageTurn();
-        TurnPagesBasedOnInput();
+        if(!bookIsClosed)
+            GetInputPageTurn();
+        
+        TurnPagesBasedOnInputAndInteraction();
 
-        GetInputPageClose();
       
-        if (pagesToBeClosed.Count > 0)
+
+        if (!bookIsClosed)
         {
-            bookIsClosing = true;
-            CloseChosenPages();
+            GetInputPageClose();
+
+            if (pagesToBeClosed.Count > 0)
+            {
+                bookIsClosing = true;
+                CloseChosenPages();
+            }
+            else
+                bookIsClosing = false;
         }
-        else
-            bookIsClosing=false;
+      
     }
  
+    public void OpenBook()
+    {
+        if (bookIsClosed)
+        {
+            Debug.Log("unity eventle buraya girdi");
+            turnToLeft = true;
+        }
+    }
     void GetInputPageClose()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C) && !thereIsSomeTurningGoingOn)
         {
             //closeTheBook = true; 
             PreparePagesToBeClosed();
@@ -46,6 +63,7 @@ public class BookManager : MonoBehaviour
     {
         foreach (PageSituations page in pagesToBeClosed)
         {
+            //bookIsClosed = false;
             page.page_spring.Update();
             UpdatePageTransformation(page);
             if (page.page_spring.state == page.page_spring.target_state)
@@ -58,6 +76,7 @@ public class BookManager : MonoBehaviour
             closedPages.Clear();
             pagesToBeClosed.Clear();
             SetCurrentLeftAndRightPages();
+            bookIsClosed = true;
         }
     }
     void PreparePagesToBeClosed()
@@ -112,6 +131,7 @@ public class BookManager : MonoBehaviour
 
         rightPage.page_spring.Update();
         UpdatePageTransformation(rightPage);
+        bookIsClosed = false;
 
         if (rightPage.page_spring.target_state == rightPage.page_spring.state)
         {
@@ -147,7 +167,10 @@ public class BookManager : MonoBehaviour
                 leftPage = situationOfPage[rightPage.page_number - 1];
             }
             else
+            {
                 leftPage = null;
+                bookIsClosed = true;
+            }
 
             turnToRight = false;
             thereIsSomeTurningGoingOn = false;
@@ -170,7 +193,7 @@ public class BookManager : MonoBehaviour
             //TurnThePageToLeft();
         }
     }
-    void TurnPagesBasedOnInput()
+    void TurnPagesBasedOnInputAndInteraction()
     {
         if (turnToRight)
         {

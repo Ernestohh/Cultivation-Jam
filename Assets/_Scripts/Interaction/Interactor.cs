@@ -8,6 +8,7 @@ public class Interactor : MonoBehaviour
     [SerializeField] float interactionPointRadius = 0.5f;
     [SerializeField] LayerMask interactableLayerMask;
     [SerializeField] InteractionMessageUI interactionMessageUI;
+    public bool isInteractingWithSomething;
 
     readonly Collider[] colliders = new Collider[3];
     int numFound;
@@ -26,10 +27,12 @@ public class Interactor : MonoBehaviour
 
             if (interactable != null)
             {
-                if (!interactionMessageUI.isDisplayed) 
+                if (!interactionMessageUI.isDisplayed)// TODO might need better solution
+                {
                     interactionMessageUI.Setup(interactable.interactMessage);
+                }
               
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.E) /*&& interactable.GetComponent<BookManager>().bookIsClosed*/)
                 {
                     interactable.onInteract?.Invoke();
                 }

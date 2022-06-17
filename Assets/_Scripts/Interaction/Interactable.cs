@@ -21,6 +21,13 @@ public class Interactable : MonoBehaviour
     public void ChangeScale()
     {
         gameObject.GetComponent<Transform>().localScale += new Vector3(0, 0.1f, 0);
-      
+    }
+    public void OpenBook()
+    {
+        gameObject.GetComponent<BookManager>().OpenBook();
+    }
+    public void CloseBook()
+    {
+
     }
 }
