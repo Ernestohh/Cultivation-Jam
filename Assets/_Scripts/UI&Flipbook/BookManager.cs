@@ -11,29 +11,65 @@ public class BookManager : MonoBehaviour
 
     private bool turnToRight;
     private bool turnToLeft;
+    private bool bookIsClosing;
+    private List<PageSituations> pagesToBeClosed = new List<PageSituations>();
+    private List<PageSituations> closedPages = new List<PageSituations>();
     private void Start()
     {
         SetCurrentLeftAndRightPages();
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && !thereIsSomeTurningGoingOn && leftPage!=null)
+        GetInputPageTurn();
+        TurnPagesBasedOnInput();
+
+        GetInputPageClose();
+      
+        if (pagesToBeClosed.Count > 0)
         {
-            turnToRight = true;
-            //TurnThePageToRight();
+            bookIsClosing = true;
+            CloseChosenPages();
         }
-        if (Input.GetKeyDown(KeyCode.E) && !thereIsSomeTurningGoingOn && rightPage!=null)
+        else
+            bookIsClosing=false;
+    }
+ 
+    void GetInputPageClose()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
         {
-            turnToLeft = true;
-            //TurnThePageToLeft();
+            //closeTheBook = true; 
+            PreparePagesToBeClosed();
         }
-        if (turnToRight)
+    }
+    void CloseChosenPages()
+    {
+        foreach (PageSituations page in pagesToBeClosed)
         {
-            TurnThePageToRight();
+            page.page_spring.Update();
+            UpdatePageTransformation(page);
+            if (page.page_spring.state == page.page_spring.target_state)
+            {
+                closedPages.Add(page);
+            }
         }
-        if (turnToLeft)
+        if (closedPages.Count == pagesToBeClosed.Count)//all of the pages are closed
         {
-            TurnThePageToLeft();
+            closedPages.Clear();
+            pagesToBeClosed.Clear();
+            SetCurrentLeftAndRightPages();
+        }
+    }
+    void PreparePagesToBeClosed()
+    {
+        for (int i = situationOfPage.Length - 1; i >= 0; i--)
+        {
+            if (situationOfPage[i].page_spring.state == 1f && PageIsNotTurning(situationOfPage[i]))
+            {
+                bookIsClosing = true;//there is a page that is open 
+                situationOfPage[i].page_spring.target_state = 0f;
+                pagesToBeClosed.Add(situationOfPage[i]);
+            }
         }
     }
     void UpdatePageTransformation(PageSituations page)
@@ -79,7 +115,6 @@ public class BookManager : MonoBehaviour
 
         if (rightPage.page_spring.target_state == rightPage.page_spring.state)
         {
-            Debug.Log(situationOfPage.Length + "uzunlyk");
             leftPage = rightPage;
             if (rightPage.page_number + 1 < situationOfPage.Length)
             {
@@ -120,6 +155,30 @@ public class BookManager : MonoBehaviour
         else
         {
             thereIsSomeTurningGoingOn = true;
+        }
+    }
+    void GetInputPageTurn()
+    {
+        if (Input.GetKeyDown(KeyCode.Q) && !thereIsSomeTurningGoingOn && leftPage != null && !bookIsClosing)
+        {
+            turnToRight = true;
+            //TurnThePageToRight();
+        }
+        if (Input.GetKeyDown(KeyCode.E) && !thereIsSomeTurningGoingOn && rightPage != null && !bookIsClosing && rightPage.page_number != situationOfPage.Length - 1)
+        {
+            turnToLeft = true;
+            //TurnThePageToLeft();
+        }
+    }
+    void TurnPagesBasedOnInput()
+    {
+        if (turnToRight)
+        {
+            TurnThePageToRight();
+        }
+        if (turnToLeft)
+        {
+            TurnThePageToLeft();
         }
     }
     public Quaternion mixRot(Quaternion a, Quaternion b, float val)
