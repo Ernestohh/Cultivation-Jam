@@ -6,7 +6,7 @@ public class CameraManager : MonoBehaviour
 {
     const float kCamMoveSpringStrength = 20.0f;
     const float kCamMoveSpringDamping = 0.00001f;
-    Spring cam_move_spring = new Spring(0.0f, 0.0f, kCamMoveSpringStrength, kCamMoveSpringDamping);
+    Spring cam_move_spring = new Spring(0.0f, 0.0f, kCamMoveSpringStrength, kCamMoveSpringDamping, false);
 
     [SerializeField] Transform camWidePos;
     [SerializeField] Transform camPlaygroundPos;
@@ -22,7 +22,6 @@ public class CameraManager : MonoBehaviour
     {
         UpdateCamSpring();
         UpdateCamTransformation();
-        Debug.Log(cam_move_spring.target_state);
     }
     void UpdateCamSpring()
     {
