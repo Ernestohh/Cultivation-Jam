@@ -10,63 +10,44 @@ namespace _Scripts.Plants
     [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer), typeof(MeshCollider))]
     public class PlantController : MonoBehaviour, IGrowable
     {
+        [field: SerializeField] public string PlantName { get; set; }
+        [field: SerializeField] public List<int> AmountOfGrowthStages { get; set; }
+        [field: SerializeField] public int AmountOfDaysToGrow { get; set; }
         [field: SerializeField] public bool IsGrowing { get; set; }
         [field: SerializeField] public bool IsSick { get; set; }
         [field: SerializeField] public bool IsHarvestable { get; set; }
+        [field: SerializeField] public List<Mesh> PlantMeshes { get; set; }
+        [field: SerializeField] public Material PlantMaterial { get; set; }
         [field: SerializeField] public PlantScriptableObject PlantScriptableObject { get; set; }
-        [field: SerializeField] public UnityEvent OnGrowingHealthy { get; set; }
-        [field: SerializeField] public UnityEvent OnGetCured { get; set; }
-        [field: SerializeField] public UnityEvent OnGrowingSick { get; set; }
-        [field: SerializeField] public UnityEvent OnFullyGrownHealthy { get; set; }
-        [field: SerializeField] public UnityEvent OnFullyGrownSick { get; set; }
+        public UnityEvent OnGrowingHealthy { get; set; }
+        public UnityEvent OnGetCured { get; set; }
+        public UnityEvent OnGrowingSick { get; set; }
+        public UnityEvent OnFullyGrownHealthy { get; set; }
+        public UnityEvent OnFullyGrownSick { get; set; }
 
-        private string _plantName;
-        private int _growTime;
         private float _baseSickness;
         private float maximumScale = 3f;
         private List<string> _positivePlantEffects, _negativePlantEffects;
-        private Mesh _plantMesh;
-        private Material _plantMaterial;
-
-        protected IEnumerator StartToGrow()
-        {
-            var timer = 0f;
-            var startScale = transform.localScale;
-            var harvestableScale = new Vector2(maximumScale, maximumScale);
-            IsGrowing = true;
-            do
-            {
-                transform.localScale = Vector3.Lerp(startScale, harvestableScale, timer / _growTime);
-                timer += Time.deltaTime;
-                yield return null;
-            } while (timer < _growTime && IsGrowing && !IsHarvestable);
-            if((Vector2)transform.localScale == harvestableScale)
-                IsHarvestable = true;
-        }
         
         private void Start()
         {
-            InitializePlantData();
-        }
-
-        private void InitializePlantData()
-        {
             SetPlantData();
-            gameObject.GetComponent<MeshFilter>().mesh = _plantMesh;
-            gameObject.GetComponent<MeshRenderer>().material = _plantMaterial;
+            gameObject.GetComponent<MeshFilter>().mesh = PlantMeshes[0];
+            gameObject.GetComponent<MeshRenderer>().material = PlantMaterial;
             gameObject.GetComponent<MeshCollider>().convex = true;
-            gameObject.GetComponent<MeshCollider>().sharedMesh = _plantMesh;
+            gameObject.GetComponent<MeshCollider>().sharedMesh = PlantMeshes[0];
         }
 
-        private void SetPlantData()
+        public void SetPlantData()
         {
-            _plantName = PlantScriptableObject.PlantName;
-            _growTime = PlantScriptableObject.GrowTime;
+            PlantName = PlantScriptableObject.PlantName;
+            AmountOfDaysToGrow = PlantScriptableObject.AmountOfDaysToGrow;
+            AmountOfGrowthStages = PlantScriptableObject.AmountOfGrowthStages;
             _baseSickness = PlantScriptableObject.BaseSicknessChance;
             _positivePlantEffects = PlantScriptableObject.PositivePlantEffects;
             _negativePlantEffects = PlantScriptableObject.NegativePlantEffects;
-            _plantMesh = PlantScriptableObject.PlantMesh;
-            _plantMaterial = PlantScriptableObject.PlantMaterial;
+            PlantMeshes = PlantScriptableObject.PlantMeshes;
+            PlantMaterial = PlantScriptableObject.PlantMaterial;
         }
     }
 }
