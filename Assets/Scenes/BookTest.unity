@@ -851,7 +851,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   interactionMessageUI: {fileID: 1475217668}
-  isInteractingWithSomething: 0
+  isInteractingWithBook: 0
 --- !u!1 &231332982
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,6 +1147,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &368519231
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 368519232}
+  m_Layer: 6
+  m_Name: BookView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &368519232
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368519231}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2134806061}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &417923568
 GameObject:
   m_ObjectHideFlags: 0
@@ -2894,7 +2925,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a0813c109dd7ced4580e8b289b47f352, type: 2}
+  - {fileID: 2100000, guid: 327d3e7b7ee7cfc4db478ae2815bcc3a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3025,7 +3056,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a0813c109dd7ced4580e8b289b47f352, type: 2}
+  - {fileID: 2100000, guid: 327d3e7b7ee7cfc4db478ae2815bcc3a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3520,7 +3551,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: aa9cc540abc140e43b46a4adc7c6dfbd, type: 2}
+  - {fileID: 2100000, guid: 3af319a1f9c7a8b49a4211290d7b574f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3681,7 +3712,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1955774539
 Transform:
   m_ObjectHideFlags: 0
@@ -3815,7 +3846,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: aa9cc540abc140e43b46a4adc7c6dfbd, type: 2}
+  - {fileID: 2100000, guid: b5bc59d6a68a77a4e908141dd61d248e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3979,6 +4010,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camWidePos: {fileID: 1831641224}
   camPlaygroundPos: {fileID: 1878680841}
+  bookReadPos: {fileID: 368519232}
   game_Camera: {fileID: 351815394}
 --- !u!1 &2077237220
 GameObject:
@@ -4087,6 +4119,7 @@ Transform:
   - {fileID: 1320296854}
   - {fileID: 1436238720}
   - {fileID: 870011674}
+  - {fileID: 368519232}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4110,7 +4143,6 @@ MonoBehaviour:
   - {fileID: 25900296}
   - {fileID: 48791053}
   - {fileID: 468212841}
-  bookIsClosed: 1
 --- !u!65 &2134806063
 BoxCollider:
   m_ObjectHideFlags: 0

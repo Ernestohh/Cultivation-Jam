@@ -12,23 +12,48 @@ public class BookManager : MonoBehaviour
     private bool turnToRight;
     private bool turnToLeft;
     private bool bookIsClosing;
-    public bool bookIsClosed = true;
+
+    private bool _bookIsClosed;
+    public bool BookIsClosed
+    {
+        get { return _bookIsClosed; }
+        set
+        {
+            var oldValue = _bookIsClosed;
+            _bookIsClosed = value;
+            if (_bookIsClosed && oldValue != value)
+            {
+                Interactor.Instance.isInteractingWithBook = false;
+                CameraManager.Instance.SetNeededCamPos();
+                Debug.Log("kitapla etkileþimde deðil");
+            }
+            if (!_bookIsClosed && oldValue != value)
+            {
+                Interactor.Instance.isInteractingWithBook = true;
+                CameraManager.Instance.SetNeededCamPos();
+                Debug.Log("kitapla etkileþiyor");
+            }
+        }
+    }
+
+
     private List<PageSituations> pagesToBeClosed = new List<PageSituations>();
     private List<PageSituations> closedPages = new List<PageSituations>();
     private void Start()
     {
+        BookIsClosed = true;
         SetCurrentLeftAndRightPages();
     }
     void Update()
     {
-        if(!bookIsClosed)
+        if(!BookIsClosed)
             GetInputPageTurn();
         
         TurnPagesBasedOnInputAndInteraction();
 
       
 
-        if (!bookIsClosed)
+        if (!BookIsClosed)
         {
             GetInputPageClose();
 
@@ -45,7 +70,7 @@ public class BookManager : MonoBehaviour
  
     public void OpenBook()
     {
-        if (bookIsClosed)
+        if (BookIsClosed)
         {
             Debug.Log("unity eventle buraya girdi");
             turnToLeft = true;
@@ -76,7 +101,8 @@ public class BookManager : MonoBehaviour
             closedPages.Clear();
             pagesToBeClosed.Clear();
             SetCurrentLeftAndRightPages();
-            bookIsClosed = true;
+            BookIsClosed = true;
+            //Interactor.Instance.isInteractingWithBook = false;
         }
     }
     void PreparePagesToBeClosed()
@@ -131,7 +157,8 @@ public class BookManager : MonoBehaviour
 
         rightPage.page_spring.Update();
         UpdatePageTransformation(rightPage);
-        bookIsClosed = false;
+        BookIsClosed = false;
+        //Interactor.Instance.isInteractingWithBook = true;//could find a better solution for this. calling this only once when required could be nice.
 
         if (rightPage.page_spring.target_state == rightPage.page_spring.state)
         {
@@ -169,7 +196,8 @@ public class BookManager : MonoBehaviour
             else
             {
                 leftPage = null;
-                bookIsClosed = true;
+                BookIsClosed = true;
+                //Interactor.Instance.isInteractingWithBook = false;
             }
 
             turnToRight = false;
@@ -189,7 +217,9 @@ public class BookManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.E) && !thereIsSomeTurningGoingOn && rightPage != null && !bookIsClosing && rightPage.page_number != situationOfPage.Length - 1)
         {
+           
             turnToLeft = true;
+       
             //TurnThePageToLeft();
         }
     }

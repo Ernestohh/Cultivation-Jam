@@ -4,19 +4,28 @@ using UnityEngine;
 
 public class Interactor : MonoBehaviour
 {
+    public static Interactor Instance = null;
     [SerializeField] Transform interactionPoint;
     [SerializeField] float interactionPointRadius = 0.5f;
     [SerializeField] LayerMask interactableLayerMask;
     [SerializeField] InteractionMessageUI interactionMessageUI;
-    public bool isInteractingWithSomething;
+    public bool isInteractingWithBook;
 
     readonly Collider[] colliders = new Collider[3];
     int numFound;
 
     Interactable interactable;
 
-
-    // Update is called once per frame
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Debug.LogError("Multiple DetectableTargetManager found. Destroying " + gameObject.name);
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
     void Update()
     {
         numFound = Physics.OverlapSphereNonAlloc(interactionPoint.position, interactionPointRadius, colliders, interactableLayerMask);
@@ -27,12 +36,14 @@ public class Interactor : MonoBehaviour
 
             if (interactable != null)
             {
-                if (!interactionMessageUI.isDisplayed)// TODO might need better solution
+                if (!interactionMessageUI.isDisplayed && !isInteractingWithBook)// TODO might need better solution
                 {
                     interactionMessageUI.Setup(interactable.interactMessage);
                 }
+                else if (isInteractingWithBook)
+                    interactionMessageUI.Close();
               
-                if (Input.GetKeyDown(KeyCode.E) /*&& interactable.GetComponent<BookManager>().bookIsClosed*/)
+                if (Input.GetKeyDown(KeyCode.E) && !isInteractingWithBook)
                 {
                     interactable.onInteract?.Invoke();
                 }
