@@ -7,11 +7,11 @@ using UnityEngine.Rendering;
 
 public class DayManager : MonoBehaviour
 { 
+    [field: SerializeField] public UnityEvent OnStartOfDay { get; set; }
     [field: SerializeField] public UnityEvent OnEndOfDay { get; set; }
 
-    private void Update()
+    private void Start()
     {
-        if(Input.GetKeyDown(KeyCode.E))
-            OnEndOfDay?.Invoke();
+        OnStartOfDay?.Invoke();
     }
 }
