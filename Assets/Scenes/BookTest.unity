@@ -709,6 +709,7 @@ GameObject:
   - component: {fileID: 228481739}
   - component: {fileID: 228481740}
   - component: {fileID: 228481741}
+  - component: {fileID: 228481742}
   m_Layer: 0
   m_Name: Automaton
   m_TagString: Player
@@ -817,8 +818,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 351815395}
-  speed: 1
+  walkSpeed: 1.5
+  runSpeed: 2.5
   turnSmoothTime: 0.1
+  SpeedChangeRate: 4
   canControlPlayer: 1
 --- !u!143 &228481741
 CharacterController:
@@ -838,6 +841,26 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &228481742
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 228481732}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &231332982
 GameObject:
   m_ObjectHideFlags: 0
@@ -1126,7 +1149,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 351815391}
-  m_LocalRotation: {x: 0.11187601, y: -0.000000017273772, z: 0.0000000019052038, w: 0.9937222}
+  m_LocalRotation: {x: 0.11187601, y: -0.000000017273775, z: 0.000000001905215, w: 0.9937222}
   m_LocalPosition: {x: 0.289, y: 0.8469031, z: -8.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1894,7 +1917,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.6182873, y: 1}
+    m_SensorSize: {x: 1.616836, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -3394,7 +3417,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.6182873, y: 1}
+    m_SensorSize: {x: 1.616836, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -3410,7 +3433,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1591888361}
-  m_LocalRotation: {x: 0.093830034, y: 0.000000004282618, z: -4.036188e-10, w: 0.99558824}
+  m_LocalRotation: {x: 0.093830034, y: -0.000000004282618, z: 4.036188e-10, w: 0.99558824}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4599,6 +4622,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camLastKnownPos: {x: 0, y: 0, z: 0}
   camLastKnownRot: {x: 0, y: 0, z: 0, w: 0}
+  camIsAtCharacter: 1
   camWidePos: {fileID: 1831641224}
   camPlaygroundPos: {fileID: 1903563390}
   bookReadPos: {fileID: 368519232}
@@ -4652,7 +4676,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.6182873, y: 1}
+    m_SensorSize: {x: 1.616836, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -5104,7 +5128,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.6182873, y: 1}
+    m_SensorSize: {x: 1.616836, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -5120,7 +5144,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2147465060}
-  m_LocalRotation: {x: 0.12993279, y: -0.00000001706052, z: 0.0000000022356734, w: 0.9915228}
+  m_LocalRotation: {x: 0.12993279, y: 0.00000001706052, z: -0.0000000022356734, w: 0.9915228}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

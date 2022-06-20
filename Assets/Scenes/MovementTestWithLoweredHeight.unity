@@ -208,7 +208,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9299475, y: 1}
+    m_SensorSize: {x: 1.6182873, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -698,8 +698,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 351815395}
-  speed: 1
+  walkSpeed: 1
+  runSpeed: 5.33
   turnSmoothTime: 0.1
+  SpeedChangeRate: 10
+  canControlPlayer: 1
 --- !u!143 &786308803
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1286,7 +1289,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9299475, y: 1}
+    m_SensorSize: {x: 1.6182873, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1613,7 +1616,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9299475, y: 1}
+    m_SensorSize: {x: 1.6182873, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1843,10 +1846,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 296c254d6b2956540a9d9c0079f0b9a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camLastKnownPos: {x: 0, y: 0, z: 0}
+  camLastKnownRot: {x: 0, y: 0, z: 0, w: 0}
+  camIsAtCharacter: 1
   camWidePos: {fileID: 1831641224}
   camPlaygroundPos: {fileID: 1878680841}
   bookReadPos: {fileID: 0}
   game_Camera: {fileID: 351815394}
+  cinemachine_freeLookGameObject: {fileID: 1826499057}
 --- !u!1 &2043920524
 GameObject:
   m_ObjectHideFlags: 3
@@ -1900,7 +1907,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9299475, y: 1}
+    m_SensorSize: {x: 1.6182873, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
