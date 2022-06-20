@@ -5,6 +5,8 @@ using UnityEngine;
 public class BookManager : MonoBehaviour
 {
     [SerializeField] PageSituations[] situationOfPage;
+    public List<AudioClip> bookOpenCloseSounds;
+    public List<AudioClip> bookPageFlipSounds;
     private PageSituations leftPage;
     private PageSituations rightPage;
     private bool thereIsSomeTurningGoingOn;
@@ -23,15 +25,14 @@ public class BookManager : MonoBehaviour
             _bookIsClosed = value;
             if (_bookIsClosed && oldValue != value)
             {
+                CameraManager.Instance.camIsAtCharacter = false;
                 Interactor.Instance.isInteractingWithBook = false;
                 CameraManager.Instance.SetNeededCamPos();
-                Debug.Log("kitapla etkileþimde deðil");
             }
             if (!_bookIsClosed && oldValue != value)
             {
                 Interactor.Instance.isInteractingWithBook = true;
                 CameraManager.Instance.SetNeededCamPos();
-                Debug.Log("kitapla etkileþiyor");
             }
         }
     }
@@ -51,12 +52,9 @@ public class BookManager : MonoBehaviour
         
         TurnPagesBasedOnInputAndInteraction();
 
-      
-
         if (!BookIsClosed)
         {
             GetInputPageClose();
-
             if (pagesToBeClosed.Count > 0)
             {
                 bookIsClosing = true;
@@ -72,7 +70,7 @@ public class BookManager : MonoBehaviour
     {
         if (BookIsClosed)
         {
-            Debug.Log("unity eventle buraya girdi");
+            //Debug.Log("unity eventle buraya girdi");
             turnToLeft = true;
         }
     }
@@ -89,8 +87,18 @@ public class BookManager : MonoBehaviour
         foreach (PageSituations page in pagesToBeClosed)
         {
             //bookIsClosed = false;
+           
+                
+            float prevPageState = page.page_spring.state;
             page.page_spring.Update();
             UpdatePageTransformation(page);
+            if (page.page_number ==0)
+            {
+                if (prevPageState > 0.65f && page.page_spring.state <= 0.65f)
+                {
+                    PlaySoundFromGroup(bookOpenCloseSounds, 1f);
+                }
+            }
             if (page.page_spring.state == page.page_spring.target_state)
             {
                 closedPages.Add(page);
@@ -154,10 +162,15 @@ public class BookManager : MonoBehaviour
     void TurnThePageToLeft()
     {
         rightPage.page_spring.target_state = 1f;
-
+        var prevState = rightPage.page_spring.state;
         rightPage.page_spring.Update();
         UpdatePageTransformation(rightPage);
         BookIsClosed = false;
+
+        if (prevState < 0.35f && rightPage.page_spring.state >= 0.35f)
+        {
+            PlaySoundFromGroup(bookPageFlipSounds, 1f);
+        }
         //Interactor.Instance.isInteractingWithBook = true;//could find a better solution for this. calling this only once when required could be nice.
 
         if (rightPage.page_spring.target_state == rightPage.page_spring.state)
@@ -181,10 +194,16 @@ public class BookManager : MonoBehaviour
     void TurnThePageToRight()
     {
         leftPage.page_spring.target_state = 0f;
-
+        var prevState = leftPage.page_spring.state;
         leftPage.page_spring.Update();
         UpdatePageTransformation(leftPage);
-
+        if (prevState > 0.65f && leftPage.page_spring.state <= 0.65f)
+        {
+            if (leftPage.page_number != 0)
+                PlaySoundFromGroup(bookPageFlipSounds, 1f);
+            else if (leftPage.page_number == 0)
+                PlaySoundFromGroup(bookOpenCloseSounds, 1f);
+        }
         if (leftPage.page_spring.target_state == leftPage.page_spring.state)
         {
             rightPage = leftPage;
@@ -233,6 +252,12 @@ public class BookManager : MonoBehaviour
         {
             TurnThePageToLeft();
         }
+    }
+
+    public void PlaySoundFromGroup(List<AudioClip> group, float volume)
+    {
+        int which_shot = UnityEngine.Random.Range(0, group.Count);
+        GetComponent<AudioSource>().PlayOneShot(group[which_shot], volume);
     }
     public Quaternion mixRot(Quaternion a, Quaternion b, float val)
     {

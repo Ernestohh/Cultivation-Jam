@@ -8,7 +8,7 @@ public class Interactor : MonoBehaviour
     [SerializeField] Transform interactionPoint;
     [SerializeField] float interactionPointRadius = 0.5f;
     [SerializeField] LayerMask interactableLayerMask;
-    [SerializeField] InteractionMessageUI interactionMessageUI;
+    public InteractionMessageUI interactionMessageUI;
     public bool isInteractingWithBook;
 
     readonly Collider[] colliders = new Collider[3];
@@ -38,14 +38,19 @@ public class Interactor : MonoBehaviour
             {
                 if (!interactionMessageUI.isDisplayed && !isInteractingWithBook)// TODO might need better solution
                 {
-                    interactionMessageUI.Setup(interactable.interactMessage);
+                    if (TPSMovement.Instance.canControlPlayer)
+                    {
+                        interactionMessageUI.Setup(interactable.interactMessage);
+                    }
                 }
                 else if (isInteractingWithBook)
                     interactionMessageUI.Close();
               
                 if (Input.GetKeyDown(KeyCode.E) && !isInteractingWithBook)
                 {
-                    interactable.onInteract?.Invoke();
+                    //Debug.Log("bu nasý true ya " + TPSMovement.Instance.canControlPlayer);
+                    if(TPSMovement.Instance.canControlPlayer)
+                        interactable.onInteract?.Invoke();
                 }
             }
         }
