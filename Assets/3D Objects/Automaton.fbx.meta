@@ -36,7 +36,12 @@ ModelImporter:
   - first:
       74: 34495214050382192
     second: metarig|Walk_S
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_Automaton
+    second: {fileID: 2100000, guid: 71f6ce312c0a58e47ade93796927c1a5, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

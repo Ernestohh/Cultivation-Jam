@@ -5,7 +5,8 @@ using UnityEngine;
 public class TPSMovement : MonoBehaviour
 {
     public static TPSMovement Instance = null;
-    CharacterController controller;
+    CharacterController _controller;
+    Animator _animator;
     [SerializeField] Transform cam;
     [SerializeField] float walkSpeed = 2f;
     [SerializeField] float runSpeed = 5.33f;
@@ -17,6 +18,10 @@ public class TPSMovement : MonoBehaviour
 
     float turnSmoothVelocity;
     public bool canControlPlayer = true;
+
+    // animation IDs
+    private int _animIDSpeed;
+    private int _animIDMotionSpeed;
     private void Awake()
     {
         if (Instance != null)
@@ -30,7 +35,14 @@ public class TPSMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        controller = GetComponent<CharacterController>();
+        _controller = GetComponent<CharacterController>();
+        _animator = GetComponent<Animator>();
+        AssignAnimationIDs();
+    }
+    private void AssignAnimationIDs()
+    {
+        _animIDSpeed = Animator.StringToHash("Speed");
+        _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
     }
 
     // Update is called once per frame
@@ -51,7 +63,7 @@ public class TPSMovement : MonoBehaviour
         Vector2 inputVector = new Vector2(horizontal, vertical);
         if (inputVector == Vector2.zero) targetSpeed = 0.0f;
 
-        float currentHorizontalSpeed = new Vector3(controller.velocity.x, 0.0f, controller.velocity.z).magnitude;
+        float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
 
         float speedOffset = 0.1f;
         if (currentHorizontalSpeed < targetSpeed - speedOffset ||
@@ -78,6 +90,9 @@ public class TPSMovement : MonoBehaviour
         }
 
         Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-        controller.Move(moveDir.normalized * _speed /*walkSpeed*/ * Time.deltaTime);
+        _controller.Move(moveDir.normalized * _speed /*walkSpeed*/ * Time.deltaTime);
+
+        _animator.SetFloat(_animIDSpeed, _animationBlend);
+        _animator.SetFloat(_animIDMotionSpeed, 1);
     }
 }
