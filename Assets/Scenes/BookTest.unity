@@ -637,7 +637,7 @@ MonoBehaviour:
   interactionPointRadius: 0.5
   interactableLayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 128
   interactionMessageUI: {fileID: 1475217668}
   isInteractingWithBook: 0
 --- !u!1 &48791051
@@ -1241,10 +1241,10 @@ RectTransform:
   m_Father: {fileID: 1686854417}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: -16, y: -16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &307199787
 MonoBehaviour:
@@ -1268,10 +1268,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 169e263965b39e546b2711fb28815d95, type: 3}
-    m_FontSize: 14
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -1399,7 +1399,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 351815391}
-  m_LocalRotation: {x: 0.053346645, y: 0.000000028997034, z: 8.606705e-10, w: 0.99857605}
+  m_LocalRotation: {x: 0.053346645, y: -0.000000024485537, z: -6.1965433e-10, w: 0.99857605}
   m_LocalPosition: {x: -0.15199995, y: 0.35000008, z: -7.245}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2183,7 +2183,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 909968509}
-  m_LocalRotation: {x: 0.053346656, y: 0.000000006443204, z: -3.4421357e-10, w: 0.99857605}
+  m_LocalRotation: {x: 0.053346656, y: -0.0000000064432046, z: 3.442136e-10, w: 0.99857605}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2847,7 +2847,7 @@ GameObject:
   - component: {fileID: 1253562050}
   - component: {fileID: 1253562049}
   - component: {fileID: 1253562048}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Playground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3683,7 +3683,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1591888361}
-  m_LocalRotation: {x: 0.019203125, y: -0.000000005788542, z: 1.1117859e-10, w: 0.99981564}
+  m_LocalRotation: {x: 0.019203134, y: -0.0000000018622999, z: 3.5768586e-11, w: 0.99981564}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3888,7 +3888,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 25, y: 100}
+  m_AnchoredPosition: {x: 75, y: 100}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1686854418
@@ -4456,7 +4456,7 @@ GameObject:
   - component: {fileID: 1949011710}
   - component: {fileID: 1949011709}
   - component: {fileID: 1949011708}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5128,7 +5128,7 @@ GameObject:
   - component: {fileID: 2134806064}
   - component: {fileID: 2134806063}
   - component: {fileID: 2134806065}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Book
   m_TagString: Untagged
   m_Icon: {fileID: 0}

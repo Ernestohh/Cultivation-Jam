@@ -101,7 +101,7 @@ public class TPSMovement : MonoBehaviour
             currentHorizontalSpeed > targetSpeed + speedOffset)
         {
             _speed = Mathf.Lerp(_speed, targetSpeed, Time.deltaTime * SpeedChangeRate);
-            Debug.Log("current horizontal speed " + _speed + " target speed " + targetSpeed + " artýþ hýzý " + Time.deltaTime * SpeedChangeRate);
+            //Debug.Log("current horizontal speed " + _speed + " target speed " + targetSpeed + " artýþ hýzý " + Time.deltaTime * SpeedChangeRate);
             _speed = Mathf.Round(_speed * 1000f) / 1000f;
         }
         else
