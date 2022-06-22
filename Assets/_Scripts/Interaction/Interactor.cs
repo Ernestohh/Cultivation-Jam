@@ -52,6 +52,8 @@ public class Interactor : MonoBehaviour
                     if(TPSMovement.Instance.canControlPlayer)
                         interactable.onInteract?.Invoke();
                 }
+                if(Input.GetKeyDown(KeyCode.F))
+                    interactable.onInteract?.Invoke();
             }
         }
         else

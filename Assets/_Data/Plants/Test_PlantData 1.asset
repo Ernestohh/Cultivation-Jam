@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: Test_PlantData 1
   m_EditorClassIdentifier: 
   <PlantName>k__BackingField: TestPlant
-  <GrowTime>k__BackingField: 20
+  <AmountOfDaysToGrow>k__BackingField: 10
+  <AmountOfGrowthStages>k__BackingField: 00000000060000000a000000
   <BaseSicknessChance>k__BackingField: 0.257
   <PositivePlantEffects>k__BackingField: []
   <NegativePlantEffects>k__BackingField: []
-  <PlantMesh>k__BackingField: {fileID: 10202, guid: 0000000000000000e000000000000000,
-    type: 0}
+  <PlantMeshes>k__BackingField:
+  - {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
   <PlantMaterial>k__BackingField: {fileID: 2100000, guid: 89d8f8418adf59f7d88c6ea027ec7697,
     type: 2}
