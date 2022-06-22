@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class TPSMovement : MonoBehaviour
 {
+    const float kKeyMoveSpringStrength = 0.1f;
+    const float kKeyMoveSpringDamping = 0.001f;
+    Spring key_spring = new Spring(0.0f, 0.0f, kKeyMoveSpringStrength, kKeyMoveSpringDamping, false);
+
+    [SerializeField]List<AudioClip> footstepSounds;
+    [SerializeField] GameObject keyBehindAutomaton;
     public static TPSMovement Instance = null;
     CharacterController _controller;
     Animator _animator;
@@ -38,6 +44,8 @@ public class TPSMovement : MonoBehaviour
         _controller = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
         AssignAnimationIDs();
+        //keyTargetRotation.eulerAngles = new Vector3(keyTargetRotation.x, 10000f, keyTargetRotation.z);
+        //key_spring.target_state = 1f;
     }
     private void AssignAnimationIDs()
     {
@@ -52,7 +60,30 @@ public class TPSMovement : MonoBehaviour
         {
             Move();
         }
-     
+
+        //RotateKey();
+
+    }
+
+    
+    Quaternion keyTargetRotation;
+    void RotateKey()
+    {
+        key_spring.Update();
+        ApplyPoseSpecial(keyTargetRotation, key_spring.state);
+        if (key_spring.target_state == 1 && key_spring.state >= 0.95f)
+        {
+            key_spring.state = 0f;
+            keyTargetRotation.eulerAngles = new Vector3(keyTargetRotation.x, Random.Range(-10800f, 10800f), keyTargetRotation.z);
+        }
+    }
+    public void ApplyPoseSpecial(Quaternion poseRotation, float amount)
+    {
+        if (amount == 0.0f)
+        {
+            return;
+        }
+        keyBehindAutomaton.transform.localRotation = mixRot(keyBehindAutomaton.transform.localRotation, poseRotation, amount);
     }
     void Move()
     {
@@ -78,7 +109,7 @@ public class TPSMovement : MonoBehaviour
             _speed = targetSpeed;
         }
         _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
-        if (_animationBlend < 0.01f) _animationBlend = 0f;
+        //if (_animationBlend < 0.01f) _animationBlend = 0f;
 
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
    
@@ -94,5 +125,36 @@ public class TPSMovement : MonoBehaviour
 
         _animator.SetFloat(_animIDSpeed, _animationBlend);
         _animator.SetFloat(_animIDMotionSpeed, 1);
+    }
+    private void OnFootstep(AnimationEvent animationEvent)
+    {
+        //Debug.Log("weight bu " + animationEvent.animatorClipInfo.weight);
+        if (animationEvent.animatorClipInfo.weight > 0.5f)
+        {
+            if (footstepSounds.Count > 0)
+            {
+                var index = Random.Range(0, footstepSounds.Count);
+                AudioSource.PlayClipAtPoint(footstepSounds[index], transform.TransformPoint(_controller.center), 0.8f * _speed);
+            }
+        }
+    }
+    public Quaternion mixRot(Quaternion a, Quaternion b, float val)
+    {
+        float angle = 0.0f;
+        Vector3 axis = new Vector3();
+        (Quaternion.Inverse(b) * a).ToAngleAxis(out angle, out axis);
+        if (angle > 180)
+        {
+            angle -= 360.0f;
+        }
+        if (angle < -180)
+        {
+            angle += 360.0f;
+        }
+        if (angle == 0)
+        {
+            return a;
+        }
+        return a * Quaternion.AngleAxis(angle * -val, axis);
     }
 }

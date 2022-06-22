@@ -253,6 +253,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6497207}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &10851329 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8138663431020749493, guid: c9a537a92adb49c4b9d82d4ab426f5fb,
+    type: 3}
+  m_PrefabInstance: {fileID: 45486825}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &11982705
 GameObject:
   m_ObjectHideFlags: 0
@@ -500,6 +506,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -47243697861396308, guid: c9a537a92adb49c4b9d82d4ab426f5fb,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -47243697861396308, guid: c9a537a92adb49c4b9d82d4ab426f5fb,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.00000003301329
+      objectReference: {fileID: 0}
+    - target: {fileID: -47243697861396308, guid: c9a537a92adb49c4b9d82d4ab426f5fb,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.0000000394038
+      objectReference: {fileID: 0}
+    - target: {fileID: -47243697861396308, guid: c9a537a92adb49c4b9d82d4ab426f5fb,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -2.6189884e-10
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c9a537a92adb49c4b9d82d4ab426f5fb,
         type: 3}
       propertyPath: m_Name
@@ -584,6 +610,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abb815f0029f30b42a4260874c34bf17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  footstepSounds:
+  - {fileID: 8300000, guid: 08700d148ffe6d249b2d6e237a1a8be9, type: 3}
+  - {fileID: 8300000, guid: d269d15797f2e0142be2d0a76b4aa329, type: 3}
+  - {fileID: 8300000, guid: dc6cf0c30ee2cfb4ba6d170e938149ae, type: 3}
+  keyBehindAutomaton: {fileID: 10851329}
   cam: {fileID: 351815395}
   walkSpeed: 0.4
   runSpeed: 0.7
@@ -1034,6 +1065,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abb815f0029f30b42a4260874c34bf17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  footstepSounds: []
+  keyBehindAutomaton: {fileID: 0}
   cam: {fileID: 351815395}
   walkSpeed: 1.5
   runSpeed: 2.5
@@ -1234,7 +1267,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 169e263965b39e546b2711fb28815d95, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -1366,7 +1399,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 351815391}
-  m_LocalRotation: {x: 0.053346645, y: 0.000000028997034, z: 8.6066915e-10, w: 0.99857605}
+  m_LocalRotation: {x: 0.053346645, y: 0.000000028997034, z: 8.606705e-10, w: 0.99857605}
   m_LocalPosition: {x: -0.15199995, y: 0.35000008, z: -7.245}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1432,7 +1465,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 368519231}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0.9}
+  m_LocalPosition: {x: 0, y: 0, z: 1.374}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3650,7 +3683,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1591888361}
-  m_LocalRotation: {x: 0.019203125, y: 0.000000005788542, z: -1.1117859e-10, w: 0.99981564}
+  m_LocalRotation: {x: 0.019203125, y: -0.000000005788542, z: 1.1117859e-10, w: 0.99981564}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3878,8 +3911,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: ac290f27fb824074f852062312cf2a46, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -5150,8 +5183,9 @@ MonoBehaviour:
   bookOpenCloseSounds:
   - {fileID: 8300000, guid: 3e473fc5f2f3f5840aba8b54be689e2a, type: 3}
   bookPageFlipSounds:
-  - {fileID: 8300000, guid: 7e6e9d3b6330c89498a87ed6d86b0f06, type: 3}
-  - {fileID: 8300000, guid: 2abfcd40b94a94947ac833173d7fb912, type: 3}
+  - {fileID: 8300000, guid: 36c3608a30fe07749b9acc030fa2ddc6, type: 3}
+  - {fileID: 8300000, guid: d6b6c44c4de4bba499334c8507cec894, type: 3}
+  - {fileID: 8300000, guid: f28d96a35962e0342bb712d74992c911, type: 3}
 --- !u!65 &2134806063
 BoxCollider:
   m_ObjectHideFlags: 0
