@@ -123,6 +123,9 @@ public class TPSMovement : MonoBehaviour
         }
     }
     #endregion
+
+    private Inventory inventory;
+    [SerializeField] UI_Inventory uiInventory;
     private void Awake()
     {
         if (Instance != null)
@@ -132,6 +135,9 @@ public class TPSMovement : MonoBehaviour
             return;
         }
         Instance = this;
+
+        inventory = new Inventory();
+        uiInventory.SetInventory(inventory);
     }
     // Start is called before the first frame update
     void Start()
