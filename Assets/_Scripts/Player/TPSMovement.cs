@@ -28,6 +28,101 @@ public class TPSMovement : MonoBehaviour
     // animation IDs
     private int _animIDSpeed;
     private int _animIDMotionSpeed;
+
+    #region Fall Jump Gravity 
+    private float _verticalVelocity;
+    private float _terminalVelocity = 53.0f;
+
+    private float _jumpTimeoutDelta;
+    private float _fallTimeoutDelta;
+
+    private int _animIDGrounded;
+    private int _animIDJump;
+    private int _animIDFreeFall;
+
+    [Tooltip("The height the player can jump")]
+    public float JumpHeight = 1.2f;
+
+    [Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
+    public float Gravity = -15.0f;
+
+    [Space(10)]
+    [Tooltip("Time required to pass before being able to jump again. Set to 0f to instantly jump again")]
+    public float JumpTimeout = 0.50f;
+
+    [Tooltip("Time required to pass before entering the fall state. Useful for walking down stairs")]
+    public float FallTimeout = 0.15f;
+    [Header("Player Grounded")]
+    [Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
+    public bool Grounded = true;
+
+    [Tooltip("Useful for rough ground")]
+    public float GroundedOffset = -0.14f;//didn't understand this
+
+    [Tooltip("The radius of the grounded check. Should match the radius of the CharacterController")]
+    public float GroundedRadius = 0.28f;
+
+    [Tooltip("What layers the character uses as ground")]
+    public LayerMask GroundLayers;
+    private void GroundedCheck()
+    {
+        // set sphere position, with offset
+        Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset,
+            transform.position.z);
+        Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers,
+            QueryTriggerInteraction.Ignore);
+
+            _animator.SetBool(_animIDGrounded, Grounded);
+    }
+    private void JumpAndGravity()
+    {
+        if (Grounded)
+        {
+            _fallTimeoutDelta = FallTimeout;
+           
+            _animator.SetBool(_animIDJump, false);
+            _animator.SetBool(_animIDFreeFall, false);
+
+            // stop our velocity dropping infinitely when grounded
+            if (_verticalVelocity < 0.0f)
+            {
+                _verticalVelocity = -2f;
+            }
+
+            if(Input.GetKeyDown(KeyCode.Space) && _jumpTimeoutDelta <= 0.0f)
+            {
+                _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
+
+                _animator.SetBool(_animIDJump, true);
+            }
+
+            if (_jumpTimeoutDelta >= 0.0f)
+            {
+                _jumpTimeoutDelta -= Time.deltaTime;
+            }
+
+        }
+        else
+        {
+            _jumpTimeoutDelta = JumpTimeout;
+
+            if (_fallTimeoutDelta >= 0.0f)
+            {
+                _fallTimeoutDelta -= Time.deltaTime;
+            }
+            else
+            {
+                _animator.SetBool(_animIDFreeFall, true);
+            }
+           // _input.jump = false; there is something like this which i didn't included. we will see if it causes any problems
+        }
+
+        if (_verticalVelocity < _terminalVelocity)
+        {
+            _verticalVelocity += Gravity * Time.deltaTime;
+        }
+    }
+    #endregion
     private void Awake()
     {
         if (Instance != null)
@@ -46,11 +141,10 @@ public class TPSMovement : MonoBehaviour
         AssignAnimationIDs();
         //keyTargetRotation.eulerAngles = new Vector3(keyTargetRotation.x, 10000f, keyTargetRotation.z);
         //key_spring.target_state = 1f;
-    }
-    private void AssignAnimationIDs()
-    {
-        _animIDSpeed = Animator.StringToHash("Speed");
-        _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
+
+        // reset our timeouts on start
+        _jumpTimeoutDelta = JumpTimeout;
+        _fallTimeoutDelta = FallTimeout;
     }
 
     // Update is called once per frame
@@ -58,6 +152,8 @@ public class TPSMovement : MonoBehaviour
     {
         if (canControlPlayer)
         {
+            JumpAndGravity();
+            GroundedCheck();
             Move();
         }
 
@@ -67,6 +163,14 @@ public class TPSMovement : MonoBehaviour
 
     
     Quaternion keyTargetRotation;
+    private void AssignAnimationIDs()
+    {
+        _animIDSpeed = Animator.StringToHash("Speed");
+        _animIDGrounded = Animator.StringToHash("Grounded");
+        _animIDJump = Animator.StringToHash("Jump");
+        _animIDFreeFall = Animator.StringToHash("FreeFall");
+        _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
+    }
     void RotateKey()
     {
         key_spring.Update();
@@ -121,7 +225,8 @@ public class TPSMovement : MonoBehaviour
         }
 
         Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-        _controller.Move(moveDir.normalized * _speed /*walkSpeed*/ * Time.deltaTime);
+        _controller.Move(moveDir.normalized * _speed /*walkSpeed*/ * Time.deltaTime +
+                             new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 
         _animator.SetFloat(_animIDSpeed, _animationBlend);
         _animator.SetFloat(_animIDMotionSpeed, 1);
@@ -137,6 +242,19 @@ public class TPSMovement : MonoBehaviour
                 AudioSource.PlayClipAtPoint(footstepSounds[index], transform.TransformPoint(_controller.center), 0.8f * _speed);
             }
         }
+    }
+    private void OnDrawGizmos()
+    {
+        Color transparentGreen = new Color(0.0f, 1.0f, 0.0f, 0.35f);
+        Color transparentRed = new Color(1.0f, 0.0f, 0.0f, 0.35f);
+
+        if (Grounded) Gizmos.color = transparentGreen;
+        else Gizmos.color = transparentRed;
+
+        // when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
+        Gizmos.DrawSphere(
+            new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z),
+            GroundedRadius);
     }
     public Quaternion mixRot(Quaternion a, Quaternion b, float val)
     {
