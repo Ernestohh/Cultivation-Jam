@@ -36,6 +36,21 @@ ModelImporter:
   - first:
       74: 34495214050382192
     second: metarig|Walk_S
+  - first:
+      74: -9044842924031751865
+    second: metarig|PlantSeed
+  - first:
+      74: 5507694438807207292
+    second: metarig|PowerOff
+  - first:
+      74: -3723980679266940737
+    second: metarig|PutInBag
+  - first:
+      74: 812097648327283434
+    second: metarig|Sleeping
+  - first:
+      74: -227156962732072722
+    second: metarig|WakeUp
   externalObjects: {}
   materials:
     materialImportMode: 2
