@@ -16,15 +16,42 @@ public class ItemAssets : MonoBehaviour
         }
         Instance = this;
     }
-    public Sprite SeedNutriballSpr;
-    public Sprite SeedMiseroSpr;
-    public Sprite SeedTeslaSpr;
-    public Sprite SeedCactusSpr;
-    public Sprite SeedGranadaSpr;
-    public Sprite FruitNutriballSpr;
-    public Sprite FruitMiseroSpr;
-    public Sprite FruitTeslaSpr;
-    public Sprite FruitCactusSpr;
-    public Sprite FruitGranadaSpr;
+    public Transform pfItemWorld;
 
+    public Material PropMaterial;
+
+    public Sprite SeedNutriballInventorySprite;
+    public MeshRenderer SeedNutriballMeshRenderer;
+    public Mesh SeedNutriballMesh;
+    public Sprite FruitNutriballInventorySprite;
+    public MeshRenderer FruitNutriballMeshRenderer;
+    public Mesh FruitNutriballMesh;
+
+    public Sprite SeedGranadaInventorySprite;
+    public MeshRenderer SeedGranadaMeshRenderer;
+    public Mesh SeedGranadaMesh;
+    public Sprite FruitGranadaInventorySprite;
+    public MeshRenderer FruitGranadaMeshRenderer;
+    public Mesh FruitGranadaMesh;
+
+    public Sprite SeedMiseroInventorySprite;
+    public MeshRenderer SeedMiseroMeshRenderer;
+    public Mesh SeedMiseroMesh;
+    public Sprite FruitMiseroInventorySprite;
+    public MeshRenderer FruitMiseroMeshRenderer;
+    public Mesh FruitMiseroMesh;
+
+    public Sprite SeedTeslaInventorySprite;
+    public MeshRenderer SeedTeslaMeshRenderer;
+    public Mesh SeedTeslaMesh; 
+    public Sprite FruitTeslaInventorySprite;
+    public MeshRenderer FruitTeslaMeshRenderer;
+    public Mesh FruitTeslaMesh;
+
+    public Sprite SeedCactusInventorySprite;
+    public MeshRenderer SeedCactusMeshRenderer;
+    public Mesh SeedCactusMesh;
+    public Sprite FruitCactusInventorySprite;
+    public MeshRenderer FruitCactusMeshRenderer;
+    public Mesh FruitCactusMesh;
 }

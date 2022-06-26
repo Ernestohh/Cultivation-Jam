@@ -136,12 +136,14 @@ public class TPSMovement : MonoBehaviour
         }
         Instance = this;
 
-        inventory = new Inventory();
-        uiInventory.SetInventory(inventory);
+        uiInventory.SetPlayer(this);
+ 
     }
     // Start is called before the first frame update
     void Start()
     {
+        inventory = new Inventory(UseItem);
+        uiInventory.SetInventory(inventory);
         _controller = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
         AssignAnimationIDs();
@@ -151,6 +153,11 @@ public class TPSMovement : MonoBehaviour
         // reset our timeouts on start
         _jumpTimeoutDelta = JumpTimeout;
         _fallTimeoutDelta = FallTimeout;
+
+        ItemWorld.SpawnItemWorld(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z + 0.5f), new Item { itemType = Item.ItemType.SeedNutriball, amount = 1});
+        ItemWorld.SpawnItemWorld(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z + 0.7f), new Item { itemType = Item.ItemType.SeedNutriball, amount = 1});
+        ItemWorld.SpawnItemWorld(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z + 0.6f), new Item { itemType = Item.ItemType.SeedNutriball, amount = 1});
+
     }
 
     // Update is called once per frame
@@ -280,5 +287,31 @@ public class TPSMovement : MonoBehaviour
             return a;
         }
         return a * Quaternion.AngleAxis(angle * -val, axis);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        ItemWorld itemWorld = other.GetComponent<ItemWorld>();
+
+        if (itemWorld != null)
+        {
+            inventory.AddItem(itemWorld.GetItem());
+            itemWorld.DestroySelf();
+        }
+    }
+
+    private void UseItem(Item item)
+    {
+        switch (item.itemType)
+        {
+            default: 
+                PlantSeed(item);
+                inventory.RemoveItem(new Item { itemType = item.itemType, amount = 1});
+                break;
+        }
+    }
+    private void PlantSeed(Item item)
+    {
+
     }
 }
