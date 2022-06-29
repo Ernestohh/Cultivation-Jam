@@ -14,13 +14,14 @@ public class DawnToDuskController : MonoBehaviour
         DayPassed = false;
         Lerp = 1.5f;
         StartCoroutine(FromDawnToDuskCoroutine());
+        
     }
 
     public void EndTheDay()
     {
         DayPassed = true;
         StopCoroutine(FromDawnToDuskCoroutine());
-        DayManager.OnStartOfDay?.Invoke();
+        //DayManager.OnStartOfDay?.Invoke();
     }
     
     protected IEnumerator FromDawnToDuskCoroutine()
@@ -43,6 +44,6 @@ public class DawnToDuskController : MonoBehaviour
     private void Update()
     {
         if (!DayPassed) return;
-        DayManager.OnEndOfDay?.Invoke();
+        //DayManager.OnEndOfDay?.Invoke();
     }
 }

@@ -195,6 +195,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pot3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1e7dfe4f4024a144dba1de51a66a6e53,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e7dfe4f4024a144dba1de51a66a6e53, type: 3}
 --- !u!4 &16961603 stripped
@@ -1392,6 +1397,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pot2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a28ddef77a9cb0d41a9751165cbb8271,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a28ddef77a9cb0d41a9751165cbb8271, type: 3}
@@ -6401,6 +6411,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dirtpatch
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 78a29b078717f5549977a1e39c54f629,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78a29b078717f5549977a1e39c54f629, type: 3}

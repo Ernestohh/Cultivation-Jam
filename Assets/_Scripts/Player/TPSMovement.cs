@@ -300,7 +300,7 @@ public class TPSMovement : MonoBehaviour
         }
     }
 
-    private void UseItem(Item item)
+    public void UseItem(Item item)
     {
         switch (item.itemType)
         {
@@ -310,7 +310,7 @@ public class TPSMovement : MonoBehaviour
                 break;
         }
     }
-    private void PlantSeed(Item item)
+    public void PlantSeed(Item item)
     {
 
     }

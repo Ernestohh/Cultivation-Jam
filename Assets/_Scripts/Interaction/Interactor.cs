@@ -36,6 +36,9 @@ public class Interactor : MonoBehaviour
 
             if (interactable != null)
             {
+                interactable.gameObject.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
+                interactable.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0.1f,0.1f,0.1f));
+                Debug.Log("interacting");
                 if (!interactionMessageUI.isDisplayed && !isInteractingWithBook)// TODO might need better solution
                 {
                     if (TPSMovement.Instance.canControlPlayer)

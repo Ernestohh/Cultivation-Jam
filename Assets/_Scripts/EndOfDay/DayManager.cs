@@ -6,12 +6,12 @@ using UnityEngine.Events;
 using UnityEngine.Rendering;
 
 public class DayManager : MonoBehaviour
-{ 
-    [field: SerializeField] public UnityEvent OnStartOfDay { get; set; }
-    [field: SerializeField] public UnityEvent OnEndOfDay { get; set; }
-
+{
+    //[field: SerializeField] public UnityEvent OnStartOfDay { get; set; }
+    //[field: SerializeField] public UnityEvent OnEndOfDay { get; set; }
+    float DayLength = 420f;
     private void Start()
     {
-        OnStartOfDay?.Invoke();
+        //0nStartOfDay?.Invoke();
     }
 }

@@ -19,4 +19,8 @@ public class Interactable : MonoBehaviour
     {
 
     }
+    public void PlantSeed()
+    {
+        //gameObject.
+    }
 }
